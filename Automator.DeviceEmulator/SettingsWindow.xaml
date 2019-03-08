@@ -1,0 +1,56 @@
+﻿<Window x:Class="Automator.DeviceEmulator.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:deviceEmulator="clr-namespace:Automator.DeviceEmulator"
+        Title="Settings" Height="480" Width="320" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" ResizeMode="CanResize">
+	<Window.Resources>
+	</Window.Resources>
+	
+    <Grid>
+        <Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		
+		<TabControl>
+			<TabItem Header="General">
+				<StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Process name: "/>
+						<TextBox x:Name="_textBox"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Допустимое отклонение цвета: "/>
+						<TextBox x:Name="_colorTolerBox"/>
+					</StackPanel>
+				</StackPanel>
+			</TabItem>
+
+			<TabItem Header="Character">
+				<StackPanel>
+					<Expander Header="В бою" Margin="5">
+						<StackPanel>
+							<StackPanel Orientation="Horizontal" Margin="5">
+								<TextBox x:Name="_tb1"/>
+								<deviceEmulator:ColorPicker Picked="ColorPicker1_OnPicked"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal" Margin="5">
+								<TextBox x:Name="_tb2"/>
+								<deviceEmulator:ColorPicker Picked="ColorPicker2_OnPicked"/>
+							</StackPanel>
+						</StackPanel>
+					</Expander>
+					<Expander Header="Здоровье" Margin="5" IsEnabled="False"/>
+					<Expander Header="Мана" Margin="5" IsEnabled="False"/>
+				</StackPanel>
+			</TabItem>
+
+			<TabItem Header="Keys">
+				<deviceEmulator:KeysSettingsControl x:Name="keysSettingsControl"/>
+			</TabItem>
+
+		</TabControl>
+		
+		<Button Content="Save" Grid.Row="1" HorizontalAlignment="Right" Margin="5" Click="OnSaveClick"/>
+    </Grid>
+</Window>
